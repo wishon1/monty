@@ -1,31 +1,30 @@
 #include "monty.h"
 /**
- *
+ * free_all - free all dynamic memory.
  */
 void free_all(void)
 {
 	stack_t *temp = NULL;
 	int i = 0;
 
-	if (glob_var.all_lines != NULL)
+	if (global_var.file_lines != NULL)
 	{
-		while (global_var.all_lines[i] != NULL)
-        	{
-            		free(global_var.all_lines[i]);
-            		i++;
-        	}
-        	free(global_var.all_lines);
-		glob.all_lines = NULL;
-	}
-	
-	/* free the stack from here */
-	if (global_var.stack != NULL)
-		while (global_var.stack != NULL)
+		while (global_var.file_lines[i] != NULL)
 		{
-			temp = global_var.stack->next;
-			free(global_var.stack);
-			global_var.stack = temp;
+			free(global_var.file_lines[i]);
+			i++;
 		}
-		global_var.stack = NULL;
+		free(global_var.file_lines);
+		global_var.file_lines = NULL;
 	}
+
+	/* free the stack from here */
+	if (global_var.container != NULL)
+		while (global_var.container != NULL)
+		{
+			temp = global_var.container->next;
+			free(global_var.container);
+			global_var.container = temp;
+		}
+	global_var.container = NULL;
 }

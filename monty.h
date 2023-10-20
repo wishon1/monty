@@ -1,5 +1,17 @@
 #ifndef MONTY_H
 #define MONTY_H
+
+#define _GNU_SOURCE
+
+/* Header files of all functions */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <stddef.h>
+#include <fcntl.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -11,9 +23,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -26,16 +38,51 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-typedef _global
+/**
+ * struct _global - represents a stack and related information.
+ * @topOfStackValue1: Represents the value of the top of stack 1
+ * @topOfStackValue2: Represents the value of the top of stack 2
+ * @bottom: Pointer to the bottom of the stack.
+ * @stack_top: Pointer to the top of the stack.
+ * @container: Container for the stack elements.
+ * @arr_ptr: Pointer to an array of characters.
+ * @file_lines: Pointer to an array of strings representing file lines.
+ */
+typedef struct _global
 {
+	int topOfStackValue1;
+	int topOfStackValue2;
+	stack_t *bottom;
+	stack_t *stack_top;
+	stack_t *container;
 	char **arr_ptr;
-	char **all_lines;
-}global_var
+	char **file_lines;
+} global_t;
 
-extern global_var glob_var;
+extern global_t global_var;
+
+/* function prototypes */
+void ar_count_error(void);
+char **file_access(int line_len, char *arg);
+void free_all(void);
+void interprete_lines(char **file_lines);
+void monty_len_err(char *arg);
+void add_func(stack_t **stack, unsigned int line_number);
+stack_t *deleteNode_end(stack_t **head_ptr);
+stack_t *add_node_end(stack_t **stack_head, const int n);
+void append_node(stack_t *endNode, stack_t *transverseNode);
+void push_func(stack_t **stack, unsigned int line_number);
+void pall_func(stack_t **stack, unsigned int line_number);
+void pop_func(stack_t **stack, unsigned int line_number);
+void pint_func(stack_t **stack, unsigned int line_number);
+void nop_func(stack_t **stack, unsigned int line_number);
+void swap_func(stack_t **stack, unsigned int line_number);
+void perform_swap(stack_t *currentNode, stack_t *temp);
+
+global_t global_var;
 
 #endif /* monty.h */
