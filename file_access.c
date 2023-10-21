@@ -1,4 +1,5 @@
 #include "monty.h"
+char **file_access(int line_len, char *arg);
 /**
  * file_access - access, and tokenize each line.
  * @line_len: lenth of line in the file
@@ -22,6 +23,7 @@ char **file_access(int line_len, char *arg)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(doc_lines);
+		fclose(_monty);
 		exit(EXIT_FAILURE);
 	}
 	while (1)
@@ -29,16 +31,14 @@ char **file_access(int line_len, char *arg)
 		get_byte = getline(&line_ptr, &get_size, _monty);
 		if (get_byte == -1)
 			break;
-
 		buf_ptr = strtok(line_ptr, "\n");
 		if (buf_ptr == NULL)
 			continue;
-
 		doc_lines[index] = strdup(buf_ptr);
 		index++;
 	}
 	free(line_ptr);
 	doc_lines[index] = NULL;
-	fclose(_monty);
+
 	return (doc_lines);
 }

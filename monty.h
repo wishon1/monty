@@ -78,6 +78,8 @@ void pint_func(stack_t **stack, unsigned int line_number);
 void nop_func(stack_t **stack, unsigned int line_number);
 void swap_func(stack_t **stack, unsigned int line_number);
 void perform_swap(stack_t *currentNode, stack_t *temp);
+void free_container(stack_t **_container);
+void free_file_lines(char **file_lines);
 
 global_t global_var;
 void interprete_lines(char **file_lines);

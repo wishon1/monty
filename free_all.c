@@ -4,27 +4,32 @@
  */
 void free_all(void)
 {
-	stack_t *temp = NULL;
-	int i = 0;
 
 	if (global_var.file_lines != NULL)
 	{
-		while (global_var.file_lines[i] != NULL)
-		{
-			free(global_var.file_lines[i]);
-			i++;
-		}
 		free(global_var.file_lines);
 		global_var.file_lines = NULL;
 	}
 
-	/* free the stack from here */
 	if (global_var.container != NULL)
-		while (global_var.container != NULL)
-		{
-			temp = global_var.container->next;
-			free(global_var.container);
-			global_var.container = temp;
-		}
-	global_var.container = NULL;
+	{
+		free_container(&(global_var.container));
+		global_var.container = NULL;
+	}
+}
+
+/**
+ * free_file_lines - free the file lines
+ * @file_lines: the file lines
+ */
+void free_file_lines(char **file_lines)
+{
+	int i = 0;
+
+	while (file_lines[i] != NULL)
+	{
+		free(file_lines[i]);
+		i++;
+	}
+	free(file_lines);
 }

@@ -8,7 +8,7 @@ void interprete_lines(char **file_lines)
 {
 	int index, sig = 0, dex = 0;
 	char *tok = NULL, *token[2] = {NULL, NULL};
-	stack_t *_stack, *temp;
+	stack_t *_stack = NULL;
 
 	instruction_t m_func[] = {
 		{"push", push_func},
@@ -40,16 +40,13 @@ void interprete_lines(char **file_lines)
 			index++;
 		}
 		global_var.container = _stack;
+		printf("stack print\n");
 		if (sig == 0)
 		{
 			printf("L%d: unknown instruction %s\n", dex + 1, token[0]);
-			free(file_lines);
-			while (global_var.container != NULL)
-			{
-				temp = global_var.container->next;
-				free(global_var.container);
-				global_var.container = temp;
-			}
+
+			free_file_lines(file_lines);
+			free_container(&(global_var.container));
 			exit(EXIT_FAILURE);
 		}
 		dex++;
