@@ -40,13 +40,13 @@ typedef struct stack_s
  */
 typedef struct _global
 {
-        int topOfStackValue1;
-        int topOfStackValue2;
-        stack_t *bottom;
-        stack_t *stack_top;
-        stack_t *container;
-        char **arr_ptr;
-        char **file_lines;
+	int topOfStackValue1;
+	int topOfStackValue2;
+	stack_t *bottom;
+	stack_t *stack_top;
+	stack_t *container;
+	char **arr_ptr;
+	char **file_lines;
 } global_t;
 
 extern global_t global_var;
