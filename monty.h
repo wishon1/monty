@@ -1,6 +1,5 @@
 #ifndef MONTY_H
 #define MONTY_H
-
 #define _GNU_SOURCE
 
 /* Header files of all functions */
@@ -11,6 +10,9 @@
 #include <ctype.h>
 #include <stddef.h>
 #include <fcntl.h>
+#include <ctype.h>
+#include <sys/stat.h>
+#include <sys/type.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
