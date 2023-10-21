@@ -40,7 +40,6 @@ void interprete_lines(char **file_lines)
 			index++;
 		}
 		global_var.container = _stack;
-		printf("stack print\n");
 		if (sig == 0)
 		{
 			printf("L%d: unknown instruction %s\n", dex + 1, token[0]);
