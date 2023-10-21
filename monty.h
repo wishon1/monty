@@ -62,9 +62,6 @@ typedef struct _global
 	char **file_lines;
 } global_t;
 
-extern global_t global_var;
-
-/* function prototypes */
 void ar_count_error(void);
 char **file_access(int line_len, char *arg);
 void free_all(void);
@@ -78,10 +75,14 @@ void push_func(stack_t **stack, unsigned int line_number);
 void pall_func(stack_t **stack, unsigned int line_number);
 void pop_func(stack_t **stack, unsigned int line_number);
 void pint_func(stack_t **stack, unsigned int line_number);
+
+extern global_t global_var;
+
 void nop_func(stack_t **stack, unsigned int line_number);
 void swap_func(stack_t **stack, unsigned int line_number);
-void perform_swap(stack_t *currentNode, stack_t *temp);
 
 global_t global_var;
+
+void perform_swap(stack_t *currentNode, stack_t *temp);
 
 #endif /* monty.h */

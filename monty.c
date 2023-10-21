@@ -1,4 +1,6 @@
 #include "monty.h"
+global_t global_var;
+int main(int ar_count, char **ar_vec);
 /**
  * main - monty bytecode interpreter program
  * @ar_count: count of the command line arguement
