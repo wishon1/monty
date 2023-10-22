@@ -73,7 +73,6 @@ void push_func(stack_t **stack, unsigned int line_number);
 void swap_func(stack_t **stack, unsigned int line_number);
 void interprete_byteCode(char *index_1, char *index_2, int line_number);
 int space_checker(void);
-void check_num(char **arr);
 void free_all(void);
 void ar_count_error(void);
 void fopen_error(char *fopen);

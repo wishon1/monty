@@ -39,8 +39,11 @@ int main(int ar_count, char **ar_vec)
 			index++;
 			buf[index] = strtok(NULL, " \n");
 		}
-		check_num(&buf[1]);
-
+		if (buf[1] != NULL)
+		{
+			if (is_digit(buf[1]) == 0)
+				buf[1] = NULL;
+		}
 		interprete_byteCode(buf[0], buf[1], line_number);
 		line_number++;
 		printf("%d\n", line_number);
