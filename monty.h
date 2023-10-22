@@ -29,12 +29,11 @@ typedef struct stack_s
 
 /**
  * struct glob_var - doubly linked list representation of a stack (or queue)
- * @value: integer
- * @global_var: points to stack
- * @file_open: file streamto open file
+ * @value: value of the stack
+ * @file_open: open to file (file stream)
  * @container: the buffer
- * @print_ptr: prints the pointer value
- * @_buffer: the
+ * @print_ptr: pointer to printed values
+ * @_buffer: the buffer to hold values
  *
  * Description: doubly linked list node structure
  */

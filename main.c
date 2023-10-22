@@ -46,7 +46,6 @@ int main(int ar_count, char **ar_vec)
 		}
 		interprete_byteCode(buf[0], buf[1], line_number);
 		line_number++;
-		printf("%d\n", line_number);
 	}
 	free_all();
 	return (0);
