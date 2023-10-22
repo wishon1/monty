@@ -1,4 +1,5 @@
 #include"monty.h"
+
 /**
  * pall_func - print all elements of the list
  * @stack: is a pointer for the list
@@ -26,10 +27,18 @@ void pint_func(stack_t **stack, unsigned int line_number)
 	*stack = global_var._buffer;
 
 	if (*stack == NULL)
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		free_all();
-		exit(EXIT_FAILURE);
-	}
+		pint_error(line_number);
+
 	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * pint_error - print error message if pint failed
+ * @line_number: the number of lines
+ */
+void pint_error(unsigned int line_number)
+{
+	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+	free_all();
+	exit(EXIT_FAILURE);
 }
