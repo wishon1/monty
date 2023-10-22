@@ -1,21 +1,22 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef MAIN_H
+#define MAIN_H
+
 #define _GNU_SOURCE
 
-/*include header files*/
-#include <stdio.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
  * @prev: points to the previous element of the stack (or queue)
  * @next: points to the next element of the stack (or queue)
- *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
@@ -27,34 +28,31 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct _global - represents a stack and related information.
- * @topOfStackValue1: Represents the value of the top of stack 1
- * @topOfStackValue2: Represents the value of the top of stack 2
- * @bottom: Pointer to the bottom of the stack.
- * @stack_top: Pointer to the top of the stack.
- * @container: Container for the stack elements.
- * @arr_ptr: Pointer to an array of characters.
- * @file_lines: Pointer to an array of strings representing file lines.
+ * struct glob_var - doubly linked list representation of a stack (or queue)
+ * @value: integer
+ * @global_var: points to stack
+ * @file_open: file streamto open file
+ * @container: the buffer
+ * @print_ptr: prints the pointer value
+ * @_buffer: the
  *
- * Description: structure of all global variables
+ * Description: doubly linked list node structure
  */
-typedef struct _global
+typedef struct glob_var
 {
-	int topOfStackValue1;
-	int topOfStackValue2;
-	stack_t *bottom;
-	stack_t *stack_top;
-	stack_t *container;
-	char **arr_ptr;
-	char **file_lines;
-} global_t;
+	int value;
+	FILE *file_open;
+	char *container;
+	stack_t *print_ptr;
+	stack_t *_buffer;
+} stack_var;
 
-extern global_t global_var;
+extern stack_var global_var;
 
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
- * @f:function to handle the opcode
+ * @f: function to handle the opcode
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
@@ -64,26 +62,21 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char **file_access(int line_len, char *arg);
+stack_var global_var;
 
-void ar_count_error(void);
-void free_all(void);
-void monty_len_err(char *arg);
 void add_func(stack_t **stack, unsigned int line_number);
-void append_node(stack_t *endNode, stack_t *transverseNode);
-void push_func(stack_t **stack, unsigned int line_number);
+void pint_func(stack_t **stack, unsigned int line_number);
 void pall_func(stack_t **stack, unsigned int line_number);
 void pop_func(stack_t **stack, unsigned int line_number);
-void pint_func(stack_t **stack, unsigned int line_number);
 void nop_func(stack_t **stack, unsigned int line_number);
+void push_func(stack_t **stack, unsigned int line_number);
 void swap_func(stack_t **stack, unsigned int line_number);
-void perform_swap(stack_t *currentNode, stack_t *temp);
-void free_container(stack_t **_container);
-void free_file_lines(char **file_lines);
+void interprete_byteCode(char *index_1, char *index_2, int line_number);
+int space_checker(void);
+void check_num(char **arr);
+void free_all(void);
+void ar_count_error(void);
+void fopen_error(char *fopen);
+int is_digit(char *str);
 
-global_t global_var;
-void interprete_lines(char **file_lines);
-
-stack_t *deleteNode_end(stack_t **head_ptr);
-stack_t *add_node_end(stack_t **stack_head, const int n);
-#endif /* monty.h */
+#endif
